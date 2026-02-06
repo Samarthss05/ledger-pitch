@@ -1,0 +1,286 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* 
+ * DESIGN SYSTEM: Ledger Brand Colors
+ * Derived from the official Ledger logo
+ * 
+ * Color Philosophy:
+ * - Primary: Forest Green (#5B7B6A) - growth, prosperity, trust
+ * - Background: Warm Cream (#E8E4D9) - approachable, premium, clean
+ * - Dark: Deep Forest (#3D5A4A) - authority, depth
+ * - Text: Charcoal (#2D3B35) - high readability
+ * - Accent: Sage (#7A9B8A) - secondary highlights
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Light theme - Ledger Brand */
+  --background: oklch(0.92 0.02 90);
+  --foreground: oklch(0.25 0.03 160);
+  --card: oklch(0.98 0.01 90);
+  --card-foreground: oklch(0.25 0.03 160);
+  --popover: oklch(0.98 0.01 90);
+  --popover-foreground: oklch(0.25 0.03 160);
+  --primary: oklch(0.52 0.08 160);
+  --primary-foreground: oklch(0.98 0.01 90);
+  --secondary: oklch(0.65 0.06 160);
+  --secondary-foreground: oklch(0.98 0.01 90);
+  --muted: oklch(0.88 0.02 90);
+  --muted-foreground: oklch(0.45 0.03 160);
+  --accent: oklch(0.65 0.06 160);
+  --accent-foreground: oklch(0.98 0.01 90);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.85 0.02 90);
+  --input: oklch(0.88 0.02 90);
+  --ring: oklch(0.52 0.08 160);
+  --chart-1: oklch(0.52 0.08 160);
+  --chart-2: oklch(0.45 0.07 160);
+  --chart-3: oklch(0.58 0.09 160);
+  --chart-4: oklch(0.38 0.06 160);
+  --chart-5: oklch(0.65 0.06 160);
+  --sidebar: oklch(0.35 0.05 160);
+  --sidebar-foreground: oklch(0.95 0.01 90);
+  --sidebar-primary: oklch(0.52 0.08 160);
+  --sidebar-primary-foreground: oklch(0.98 0.01 90);
+  --sidebar-accent: oklch(0.42 0.05 160);
+  --sidebar-accent-foreground: oklch(0.95 0.01 90);
+  --sidebar-border: oklch(0.45 0.04 160);
+  --sidebar-ring: oklch(0.52 0.08 160);
+}
+
+.dark {
+  --background: oklch(0.18 0.03 160);
+  --foreground: oklch(0.92 0.02 90);
+  --card: oklch(0.22 0.03 160);
+  --card-foreground: oklch(0.92 0.02 90);
+  --popover: oklch(0.22 0.03 160);
+  --popover-foreground: oklch(0.92 0.02 90);
+  --primary: oklch(0.58 0.08 160);
+  --primary-foreground: oklch(0.15 0.03 160);
+  --secondary: oklch(0.35 0.05 160);
+  --secondary-foreground: oklch(0.92 0.02 90);
+  --muted: oklch(0.25 0.03 160);
+  --muted-foreground: oklch(0.65 0.03 160);
+  --accent: oklch(0.58 0.08 160);
+  --accent-foreground: oklch(0.15 0.03 160);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.3 0.03 160);
+  --input: oklch(0.28 0.03 160);
+  --ring: oklch(0.58 0.08 160);
+  --chart-1: oklch(0.58 0.08 160);
+  --chart-2: oklch(0.5 0.07 160);
+  --chart-3: oklch(0.65 0.09 160);
+  --chart-4: oklch(0.42 0.06 160);
+  --chart-5: oklch(0.72 0.06 160);
+  --sidebar: oklch(0.2 0.03 160);
+  --sidebar-foreground: oklch(0.92 0.02 90);
+  --sidebar-primary: oklch(0.58 0.08 160);
+  --sidebar-primary-foreground: oklch(0.15 0.03 160);
+  --sidebar-accent: oklch(0.28 0.03 160);
+  --sidebar-accent-foreground: oklch(0.92 0.02 90);
+  --sidebar-border: oklch(0.3 0.03 160);
+  --sidebar-ring: oklch(0.58 0.08 160);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    font-feature-settings: "ss01" 1, "ss02" 1, "cv01" 1;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  code,
+  pre {
+    font-family: var(--font-mono);
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+  section[id] {
+    scroll-margin-top: 96px;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+  
+  /* Premium gradient backgrounds */
+  .gradient-green {
+    background: linear-gradient(135deg, #5B7B6A 0%, #7A9B8A 100%);
+  }
+  
+  .gradient-dark {
+    background: linear-gradient(135deg, #3D5A4A 0%, #5B7B6A 100%);
+  }
+  
+  .gradient-cream {
+    background: linear-gradient(180deg, #E8E4D9 0%, #F5F3ED 100%);
+  }
+  
+  /* Subtle pattern overlay */
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(91, 123, 106, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .pattern-grid {
+    background-image:
+      linear-gradient(rgba(61, 90, 74, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(61, 90, 74, 0.08) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+  
+  /* Premium card styles */
+  .card-premium {
+    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,246,241,0.9) 100%);
+    box-shadow: 0 4px 6px -1px rgba(61, 90, 74, 0.1), 0 2px 4px -2px rgba(61, 90, 74, 0.1);
+  }
+
+  .glass-card {
+    backdrop-filter: blur(16px);
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 24px 60px -30px rgba(31, 46, 38, 0.7);
+  }
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E8E4D9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #B8C4BC;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7A9B8A;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-slow {
+    animation: none;
+  }
+}
+
+/* Selection color */
+::selection {
+  background: rgba(91, 123, 106, 0.2);
+  color: #3D5A4A;
+}
