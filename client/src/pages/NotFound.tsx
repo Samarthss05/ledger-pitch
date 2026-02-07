@@ -5,9 +5,10 @@ import { useLocation } from "wouter";
 
 export default function NotFound() {
   const [, setLocation] = useLocation();
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
   const handleGoHome = () => {
-    setLocation("/");
+    setLocation(base || "/");
   };
 
   return (

@@ -17,12 +17,14 @@ function Router() {
 }
 
 function App() {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <WouterRouter base={import.meta.env.BASE_URL}>
+          <WouterRouter base={base}>
             <Router />
           </WouterRouter>
         </TooltipProvider>
