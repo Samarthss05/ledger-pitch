@@ -298,21 +298,21 @@ function HeroSection() {
       subtitle: "Using AI to predict demand, optimize reorders, and prevent stockouts.",
       icon: Zap,
       tint: GREEN,
-      tag: "Autopilot",
+      tag: "Live",
     },
     {
       title: "Demand Auctions",
       subtitle: "Suppliers bid on live demand",
       icon: Gavel,
       tint: SAGE,
-      tag: "Live Bids",
+      tag: "Next",
     },
     {
       title: "Embedded Credit",
       subtitle: "BNPL + growth finance",
       icon: Wallet,
       tint: DARK_GREEN,
-      tag: "Underwriting",
+      tag: "Coming Soon",
     },
   ];
 
@@ -353,7 +353,7 @@ function HeroSection() {
           >
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
               <Sparkles className="w-4 h-4 text-white/80" />
-              <span className="text-sm font-medium text-white/90">Ledger OS for ASEAN Retail</span>
+              <span className="text-sm font-medium text-white/90">Supercharging the backbone of ASEAN</span>
             </div>
             
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight text-white leading-tight">
@@ -365,7 +365,7 @@ function HeroSection() {
             <p className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
               Not a marketplace. Not a SaaS tool.
               <span className="text-white font-medium"> The infrastructure layer</span> that will power
-              ASEAN's S$60 billion traditional retail economy.
+              ASEAN's S$1.1 Trillion traditional retail economy.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
@@ -404,28 +404,26 @@ function HeroSection() {
                   <div className="text-xs uppercase tracking-[0.3em] text-white/60">The Vision</div>
                   <div className="text-lg font-semibold text-white">Ledger OS Modules</div>
                 </div>
-                <div className="flex items-center gap-2 text-xs font-semibold text-white/70">
-                  <span className="h-2 w-2 rounded-full bg-emerald-300 animate-pulse" />
-                  Live
-                </div>
               </div>
 
               <div className="mt-6 space-y-4">
                 {pulseItems.map((item) => (
                   <div
                     key={item.title}
-                    className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/10 px-4 py-3 transition-all duration-300 hover:border-white/40 hover:bg-white"
+                    className="group grid grid-cols-[auto_1fr_auto] items-start gap-3 rounded-2xl border border-white/10 bg-white/10 px-4 py-3 transition-all duration-300 hover:border-white/40 hover:bg-white"
                   >
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl transition-colors duration-300" style={{ background: item.tint }}>
-                        <item.icon className="w-5 h-5 text-white group-hover:text-white" />
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-white group-hover:text-green-900">{item.title}</div>
-                        <div className="text-xs text-white/60 group-hover:text-green-700">{item.subtitle}</div>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl transition-colors duration-300" style={{ background: item.tint }}>
+                      <item.icon className="w-5 h-5 text-white group-hover:text-white" />
+                    </div>
+                    <div className="min-w-0">
+                      <div className="text-sm font-semibold text-white group-hover:text-green-900">{item.title}</div>
+                      <div className="text-xs text-white/60 group-hover:text-green-700">
+                        {item.subtitle}
                       </div>
                     </div>
-                    <span className="text-xs font-semibold text-white/70 group-hover:text-green-700">{item.tag}</span>
+                    <span className="mt-0.5 whitespace-nowrap text-xs font-semibold text-white/70 group-hover:text-green-700">
+                      {item.tag}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -469,8 +467,8 @@ function MarketDataSection() {
 
   const marketStats = [
     { value: 9, suffix: "%", label: "CAGR", sublabel: "Market Growth Rate" },
-    { value: 60, prefix: "S$", suffix: "bn", label: "TAM", sublabel: "Total Addressable Market" },
-    { value: 20, prefix: "$", suffix: "bn", label: "SAM", sublabel: "Serviceable Market" },
+    { value: 1.1, prefix: "S$", suffix: "tr", label: "TAM", sublabel: "Total Addressable Market" },
+    { value: 600, prefix: "$", suffix: "bn", label: "SAM", sublabel: "Serviceable Market" },
   ];
 
   const aseanStats = [
@@ -480,16 +478,17 @@ function MarketDataSection() {
   ];
 
   const countryData = [
-    { country: "Singapore", share: 45 },
-    { country: "Indonesia", share: 62 },
-    { country: "Thailand", share: 82 },
-    { country: "Malaysia", share: 65 },
-    { country: "Vietnam", share: 48 },
-    { country: "Philippines", share: 88 },
+    { country: "Indonesia", gmv: 600, label: "~S$600B" },
+    { country: "Thailand", gmv: 300, label: "~S$300B" },
+    { country: "Vietnam", gmv: 250, label: "~S$250B" },
+    { country: "Philippines", gmv: 180, label: "~S$180B" },
+    { country: "Malaysia", gmv: 160, label: "~S$160B" },
+    { country: "Singapore", gmv: 100, label: "~S$100B" },
   ];
+  const maxGmv = Math.max(...countryData.map(item => item.gmv));
 
   return (
-    <section id="market" className="py-32 relative" style={{ background: CREAM }}>
+    <section id="market" className="py-24 relative" style={{ background: CREAM }}>
       <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, ${CREAM} 0%, #F6F3EC 100%)` }} />
       <div className="absolute inset-0 pattern-grid opacity-40" />
       
@@ -498,7 +497,7 @@ function MarketDataSection() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-green-100 shadow-sm mb-6">
             <BarChart3 className="w-4 h-4" style={{ color: GREEN }} />
@@ -508,7 +507,7 @@ function MarketDataSection() {
             What does <span style={{ color: GREEN }}>Market Data</span> say
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-xl max-w-2xl mx-auto" style={{ color: GREEN }}>
-            A massive, underserved market with strong fundamentals and rapid digital adoption.
+            A $1.1T retail market still runs on paper.
           </motion.p>
         </motion.div>
         
@@ -582,13 +581,13 @@ function MarketDataSection() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h3 className="text-lg font-semibold" style={{ color: DARK_GREEN }}>
-                  % Share of GDP by SMEs
+                  Total Retail GMV by Country
                 </h3>
                 <p className="text-sm" style={{ color: SAGE }}>
-                  Contribution by country
+                  Offline + online retail GMV (2023 est.)
                 </p>
               </div>
-              <div className="text-xs uppercase tracking-widest text-green-700">SME GDP</div>
+              <div className="text-xs uppercase tracking-widest text-green-700">Retail GMV</div>
             </div>
 
             <div className="grid grid-cols-6 items-end gap-4 h-64">
@@ -602,13 +601,13 @@ function MarketDataSection() {
                   style={{ transformOrigin: "bottom" }}
                 >
                   <div className="text-sm font-semibold mb-2" style={{ color: DARK_GREEN }}>
-                    {item.share}%
+                    {item.label}
                   </div>
                   <div className="w-full rounded-xl bg-green-50 px-1 pb-1">
                     <div
                       className="w-full rounded-lg transition-all duration-300 hover:opacity-90"
                       style={{
-                        height: `${item.share * 2}px`,
+                        height: `${Math.round((item.gmv / maxGmv) * 180 + 24)}px`,
                         background: `linear-gradient(180deg, ${GREEN} 0%, ${DARK_GREEN} 100%)`,
                       }}
                     />
@@ -669,7 +668,7 @@ function ProblemSection() {
   const problems = [
     { 
       icon: Globe, 
-      stat: "S$60B", 
+      stat: "S$1.1T", 
       label: "Traditional Retail Market",
       desc: "Invisible to modern supply chains"
     },
