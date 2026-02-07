@@ -295,7 +295,7 @@ function HeroSection() {
   const pulseItems = [
     {
       title: "Predictive Procurement",
-      subtitle: "Auto-orders before stockouts",
+      subtitle: "Using AI to predict demand, optimize reorders, and prevent stockouts.",
       icon: Zap,
       tint: GREEN,
       tag: "Autopilot",
@@ -359,13 +359,13 @@ function HeroSection() {
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 tracking-tight text-white leading-tight">
               The Operating System
               <br />
-              <span style={{ color: CREAM }}>for Traditional Retail</span>
+              <span style={{ color: CREAM }}>for Neighborhood Retail</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-white/70 max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed">
-              Not a marketplace. Not a SaaS tool. 
-              <span className="text-white font-medium"> The infrastructure layer</span> that powers 
-          ASEAN's S$60 billion traditional retail economy.
+              Not a marketplace. Not a SaaS tool.
+              <span className="text-white font-medium"> The infrastructure layer</span> that will power
+              ASEAN's S$60 billion traditional retail economy.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4">
@@ -381,10 +381,10 @@ function HeroSection() {
               <Button 
                 size="lg"
                 variant="outline"
-                onClick={() => document.getElementById("financials")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
                 className="rounded-xl px-8 py-6 text-lg font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300"
               >
-                View Projections
+                Request Deck
               </Button>
             </div>
 
