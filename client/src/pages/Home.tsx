@@ -69,7 +69,7 @@ const scaleIn = {
 };
 
 // Animated counter component
-function AnimatedCounter({ value, suffix = "", prefix = "" }: { value: number; suffix?: string; prefix?: string }) {
+function AnimatedCounter({ value, suffix = "", prefix = "", decimals = 0 }: { value: number; suffix?: string; prefix?: string; decimals?: number }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -101,7 +101,12 @@ function AnimatedCounter({ value, suffix = "", prefix = "" }: { value: number; s
 
   return (
     <span ref={ref} className="font-semibold tabular-nums">
-      {prefix}{Math.floor(count).toLocaleString()}{suffix}
+      {prefix}
+      {new Intl.NumberFormat(undefined, {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      }).format(decimals > 0 ? count : Math.floor(count))}
+      {suffix}
     </span>
   );
 }
@@ -1233,10 +1238,25 @@ function FinancialsSection() {
 
   const isNegativeValue = (value: string) => value.trim().startsWith("-");
 
-  const keyMetrics = [
-    { value: 57, suffix: "x", label: "LTV:CAC Ratio", sublabel: "By Year 5" },
-    { value: 300, suffix: "%", label: "Year-on-Year Growth", sublabel: "Across all pillars" },
-    { value: 67, suffix: "%", label: "Revenue from Coop", sublabel: "Private label engine" },
+  type KeyMetric =
+    | {
+        label: string;
+        sublabel: string;
+        displayValue: string;
+      }
+    | {
+        label: string;
+        sublabel: string;
+        value: number;
+        prefix?: string;
+        suffix?: string;
+        decimals?: number;
+      };
+
+  const keyMetrics: KeyMetric[] = [
+    { value: 3.4, decimals: 1, suffix: "×", label: "GMV per store", sublabel: "by Year 5" },
+    { displayValue: "12-18%", label: "Better supplier pricing", sublabel: "vs spot buying" },
+    { displayValue: "$2.6B", label: "GMV", sublabel: "by Year 5" },
   ];
 
   return (
@@ -1277,7 +1297,16 @@ function FinancialsSection() {
               style={{ background: `linear-gradient(135deg, ${GREEN} 0%, ${SAGE} 100%)` }}
             >
               <div className="text-5xl font-bold mb-2">
-                <AnimatedCounter value={metric.value} suffix={metric.suffix} />
+                {"displayValue" in metric ? (
+                  metric.displayValue
+                ) : (
+                  <AnimatedCounter
+                    value={metric.value}
+                    prefix={metric.prefix}
+                    suffix={metric.suffix}
+                    decimals={metric.decimals}
+                  />
+                )}
               </div>
               <div className="font-semibold text-lg">{metric.label}</div>
               <div className="text-white/70 text-sm">{metric.sublabel}</div>
