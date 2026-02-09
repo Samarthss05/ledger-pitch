@@ -123,13 +123,13 @@ const researchSources = [
   {
     title: "SME Finance Gap",
     org: "International Finance Corporation",
-    url: "https://www.ifc.org/en/insights-reports/2017/msme-finance-gap",
+    url: "https://www.smefinanceforum.org/data-sites/msme-finance-gap",
     description: "MSME financing gap globally"
   },
   {
     title: "Future of Retail",
     org: "Deloitte",
-    url: "https://www2.deloitte.com/content/dam/Deloitte/sg/Documents/consumer-business/sea-cb-future-of-retail-in-asia-pacific.pdf",
+    url: "https://www.deloitte.com/us/en/insights/industry/retail-distribution/retail-distribution-industry-outlook.html",
     description: "Retail transformation in APAC"
   }
 ];
@@ -168,11 +168,12 @@ function Navigation() {
   };
 
   const navItems = [
-    { id: "market", label: "Market" },
     { id: "problem", label: "Problem" },
     { id: "solution", label: "Solution" },
-    { id: "pillars", label: "Pillars" },
-    { id: "financials", label: "Financials" },
+    { id: "market-size", label: "Market Size" },
+    { id: "traction", label: "Traction" },
+    { id: "business-model", label: "Business Model" },
+    { id: "ask", label: "Ask" },
   ];
 
   return (
@@ -224,7 +225,7 @@ function Navigation() {
         
         <motion.div className="hidden lg:block" whileHover={{ scale: 1.03 }}>
           <Button 
-            onClick={() => scrollToSection("contact")}
+            onClick={() => scrollToSection("ask")}
             className="rounded-lg px-6 font-semibold shadow-lg shadow-green-900/20 hover:shadow-xl hover:shadow-green-900/30 transition-all duration-300"
             style={{ background: GREEN }}
           >
@@ -264,7 +265,7 @@ function Navigation() {
                 </button>
               ))}
               <Button
-                onClick={() => handleNavClick("contact")}
+                onClick={() => handleNavClick("ask")}
                 className="mt-2 w-full rounded-xl py-5 text-base font-semibold shadow-md shadow-green-900/15"
                 style={{ background: GREEN }}
               >
@@ -381,7 +382,7 @@ function HeroSection() {
               <Button 
                 size="lg"
                 variant="outline"
-                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() => document.getElementById("ask")?.scrollIntoView({ behavior: "smooth" })}
                 className="rounded-xl px-8 py-6 text-lg font-semibold border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300"
               >
                 Request Deck
@@ -488,7 +489,7 @@ function MarketDataSection() {
   const maxGmv = Math.max(...countryData.map(item => item.gmv));
 
   return (
-    <section id="market" className="py-24 relative" style={{ background: CREAM }}>
+    <section id="market-size" className="py-24 relative" style={{ background: CREAM }}>
       <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, ${CREAM} 0%, #F6F3EC 100%)` }} />
       <div className="absolute inset-0 pattern-grid opacity-40" />
       
@@ -667,10 +668,16 @@ function ProblemSection() {
 
   const problems = [
     { 
+      icon: TrendingUp, 
+      stat: "15-30%", 
+      label: "Supply Chain Waste",
+      desc: "From inefficient procurement"
+    },
+    { 
       icon: Globe, 
       stat: "S$1.1T", 
       label: "Traditional Retail Market",
-      desc: "Invisible to modern supply chains"
+      desc: "Still has inefficient supply chains"
     },
     { 
       icon: Users, 
@@ -684,16 +691,10 @@ function ProblemSection() {
       label: "Trade Finance Rejection",
       desc: "Banks refuse SME applications"
     },
-    { 
-      icon: TrendingUp, 
-      stat: "15-30%", 
-      label: "Supply Chain Waste",
-      desc: "From inefficient procurement"
-    },
   ];
 
   return (
-    <section id="problem" className="py-32 relative" style={{ background: "#FBFAF6" }}>
+    <section id="problem" className="min-h-screen pt-20 pb-14 lg:pt-24 lg:pb-16 relative flex items-start" style={{ background: "#FBFAF6" }}>
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F5F2EA 100%)" }} />
       <div className="absolute inset-0 pattern-grid opacity-25" />
       <div className="container relative z-10" ref={ref}>
@@ -701,7 +702,7 @@ function ProblemSection() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-100 mb-6">
             <Shield className="w-4 h-4 text-red-500" />
@@ -720,7 +721,7 @@ function ProblemSection() {
           variants={staggerContainer}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid md:grid-cols-2 lg:grid-cols-4 gap-5"
         >
           {problems.map((item, index) => (
             <motion.div
@@ -747,31 +748,30 @@ function ProblemSection() {
             </motion.div>
           ))}
         </motion.div>
-        
-        {/* Why marketplaces fail */}
+
         <motion.div
           variants={fadeInUp}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="mt-16 rounded-2xl border border-red-100 bg-white p-8 shadow-lg shadow-red-900/10"
+          className="mt-12 rounded-2xl border border-red-100 bg-white p-8 shadow-lg shadow-red-900/10"
         >
           <div className="flex items-start gap-6">
             <div className="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center shrink-0">
               <Shield className="w-7 h-7 text-red-500" />
             </div>
             <div>
-              <div className="text-xs uppercase tracking-[0.3em] text-red-400">Structural issue</div>
               <h3 className="font-bold text-xl mb-3 text-red-700">
-                Why B2B Marketplaces Fail
+                Why B2B Marketplaces Failed
               </h3>
               <p className="leading-relaxed" style={{ color: DARK_GREEN }}>
-                Commission-based models create a simple problem: <span className="font-semibold">disintermediation</span>. 
-                Once a shop finds a good supplier, they exchange WhatsApp numbers and bypass the platform entirely. 
-                You've spent money acquiring both sides, only to lose them after the first transaction.
+                Commission-based models create a simple problem --<span className="font-semibold">disintermediation</span>.
+                Once a shop finds a good supplier, they exchange WhatsApp numbers and bypass the platform entirely.
+                You spend money acquiring both sides, only to lose them after the first transaction.
               </p>
             </div>
           </div>
         </motion.div>
+
       </div>
     </section>
   );
@@ -780,11 +780,25 @@ function ProblemSection() {
 // Solution Section
 function SolutionSection() {
   const ref = useRef(null);
+  const sectionRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
+  const introOpacity = useTransform(scrollYProgress, [0, 0.2, 0.45], [1, 1, 0]);
+  const introY = useTransform(scrollYProgress, [0, 0.45], [0, -90]);
+  const diagramOpacity = useTransform(scrollYProgress, [0.25, 0.55], [0, 1]);
+  const diagramY = useTransform(scrollYProgress, [0.25, 0.55], [100, 0]);
+  const diagramScale = useTransform(scrollYProgress, [0.25, 0.55], [0.96, 1]);
+  const introScale = useTransform(scrollYProgress, [0, 0.45], [1, 0.975]);
+  const ambientY = useTransform(scrollYProgress, [0, 0.45], [0, -70]);
+  const ambientOpacity = useTransform(scrollYProgress, [0, 0.45], [0.95, 0.3]);
+
   const osPillars = [
     {
-      title: "Sentient OS",
+      title: "AI SaaS",
       description: "AI autopilot for procurement + pricing.",
       icon: Brain,
       accent: GREEN,
@@ -810,7 +824,7 @@ function SolutionSection() {
   ];
 
   const flowSteps = [
-    { label: "POS data", icon: Store },
+    { label: "B2B Marketplace", icon: Store },
     { label: "AI OS", icon: Brain },
     { label: "Demand auction", icon: Gavel },
     { label: "Embedded finance", icon: Wallet },
@@ -818,33 +832,88 @@ function SolutionSection() {
   ];
 
   return (
-    <section id="solution" className="py-32 relative" style={{ background: DARK_GREEN }}>
+    <section id="solution" ref={sectionRef} className="relative" style={{ background: DARK_GREEN }}>
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10">
           <div className="w-full h-full" style={{ background: `radial-gradient(circle at 70% 30%, ${SAGE} 0%, transparent 50%)` }} />
         </div>
       </div>
-      
-      <div className="container relative z-10" ref={ref}>
+
+      {/* Step 1: Full-screen narrative frame */}
+      <motion.div
+        className="relative z-10 min-h-screen flex items-center pt-24 pb-16"
+        style={shouldReduceMotion ? undefined : { opacity: introOpacity, y: introY, scale: introScale }}
+      >
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="text-center mb-16"
+          className="pointer-events-none absolute inset-0"
+          style={shouldReduceMotion ? undefined : { y: ambientY, opacity: ambientOpacity }}
         >
-          <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
-            <Layers className="w-4 h-4" style={{ color: CREAM }} />
-            <span className="text-sm font-medium text-white/90">Our Approach</span>
-          </motion.div>
-          <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Not a Marketplace. <span style={{ color: CREAM }}>An Operating System.</span>
-          </motion.h2>
-          <motion.p variants={fadeInUp} className="text-xl text-white/70 max-w-3xl mx-auto">
-            Windows doesn't charge commission when you buy software. You pay for the OS license.
-            <span className="text-white font-semibold"> That's our model.</span>
-          </motion.p>
+          <div
+            className="absolute inset-0"
+            style={{ background: `radial-gradient(circle at 20% 25%, ${SAGE}44 0%, transparent 48%), radial-gradient(circle at 80% 30%, ${GREEN}66 0%, transparent 52%)` }}
+          />
+          <div
+            className="absolute inset-0 opacity-15"
+            style={{ backgroundImage: "linear-gradient(rgba(232,228,217,0.14) 1px, transparent 1px), linear-gradient(90deg, rgba(232,228,217,0.14) 1px, transparent 1px)", backgroundSize: "48px 48px" }}
+          />
         </motion.div>
-        
+        <div className="container" ref={ref}>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+            className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-white/20 bg-gradient-to-b from-white/[0.16] via-white/[0.08] to-white/[0.04] px-6 py-12 shadow-[0_45px_120px_rgba(8,24,17,0.45)] backdrop-blur-xl md:px-14 md:py-16"
+          >
+            <div
+              className="pointer-events-none absolute inset-0 opacity-35"
+              style={{ background: "linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.18) 35%, transparent 65%)" }}
+            />
+            <div className="relative text-center">
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-2 backdrop-blur-sm mb-7">
+                <Layers className="w-4 h-4" style={{ color: CREAM }} />
+                <span className="text-sm font-medium text-white/90">Our Approach</span>
+              </motion.div>
+              <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-bold leading-tight text-white">
+                <span className="block">Not a Marketplace.</span>
+                <span className="block" style={{ color: CREAM }}>This is an Ecosystem.</span>
+              </motion.h2>
+              <motion.p variants={fadeInUp} className="mt-6 text-lg md:text-2xl text-white/75 max-w-3xl mx-auto leading-relaxed">
+                We don’t just patch inefficiencies. We redesign the system that creates them.
+                <span className="text-white font-semibold"> That’s our model.</span>
+              </motion.p>
+
+              <motion.div variants={fadeInUp} className="mt-10 grid gap-3 text-left sm:grid-cols-3">
+                {[
+                  { label: "Point of Sale OS", value: "The system of record for every retail decision", icon: Store },
+                  { label: "AI Operating Layer", value: "Transforms data into autonomous decisions", icon: Brain },
+                  { label: "Demand Exchange", value: "Where suppliers compete for real demand", icon: Wallet },
+                ].map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-white/20 bg-white/10 px-4 py-4 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: `${CREAM}26` }}>
+                        <item.icon className="h-4 w-4 text-white" />
+                      </div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.18em] text-white/70">{item.label}</div>
+                    </div>
+                    <div className="text-sm text-white/85">{item.value}</div>
+                  </div>
+                ))}
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="mt-8 flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.24em] text-white/55">
+                <span>Scroll to reveal architecture</span>
+                <ChevronDown className={`h-4 w-4 ${shouldReduceMotion ? "" : "animate-bounce"}`} />
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Step 2: Diagram appears on further scroll */}
+      <motion.div
+        className="container relative z-10 pb-24"
+        style={shouldReduceMotion ? undefined : { opacity: diagramOpacity, y: diagramY, scale: diagramScale }}
+      >
         {/* Supply chain OS diagram */}
         <motion.div
           variants={scaleIn}
@@ -1028,7 +1097,7 @@ function SolutionSection() {
             </motion.div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -1102,7 +1171,7 @@ function PillarsSection() {
   ];
 
   return (
-    <section id="pillars" className="py-32 relative" style={{ background: CREAM }}>
+    <section id="business-model" className="py-32 relative" style={{ background: CREAM }}>
       <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, ${CREAM} 0%, #F7F4EE 100%)` }} />
       <div className="absolute inset-0 pattern-grid opacity-35" />
       
@@ -1196,7 +1265,7 @@ function FinancialsSection() {
   ];
 
   return (
-    <section id="financials" className="py-32 relative" style={{ background: "#FBFAF7" }}>
+    <section id="traction" className="py-32 relative" style={{ background: "#FBFAF7" }}>
       <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, #FFFFFF 0%, #F6F2EC 100%)" }} />
       <div className="absolute inset-0 pattern-grid opacity-20" />
       <div className="container relative z-10" ref={ref}>
@@ -1313,7 +1382,7 @@ function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="py-32 relative" style={{ background: DARK_GREEN }}>
+    <section id="ask" className="py-32 relative" style={{ background: DARK_GREEN }}>
       <div className="absolute inset-0 pattern-grid opacity-10" />
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute bottom-0 left-0 w-1/2 h-full opacity-10">
@@ -1451,11 +1520,11 @@ export default function Home() {
     <div className="min-h-screen" style={{ background: CREAM }}>
       <Navigation />
       <HeroSection />
-      <MarketDataSection />
       <ProblemSection />
       <SolutionSection />
-      <PillarsSection />
+      <MarketDataSection />
       <FinancialsSection />
+      <PillarsSection />
       <ContactSection />
       <Footer />
     </div>
