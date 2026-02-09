@@ -781,10 +781,11 @@ function ProblemSection() {
 function SolutionSection() {
   const ref = useRef(null);
   const sectionRef = useRef(null);
+  const animationRef = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
+    target: animationRef,
     offset: ["start start", "end end"],
   });
   const introOpacity = useTransform(scrollYProgress, [0, 0.2, 0.45], [1, 1, 0]);
@@ -839,6 +840,7 @@ function SolutionSection() {
         </div>
       </div>
 
+      <div ref={animationRef}>
       {/* Step 1: Full-screen narrative frame */}
       <motion.div
         className="relative z-10 min-h-screen flex items-center pt-24 pb-16"
@@ -1063,41 +1065,14 @@ function SolutionSection() {
               </motion.div>
             </div>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="grid md:grid-cols-3 gap-6 border-t border-white/10 pt-8 text-left"
-            >
-              {[
-                {
-                  title: "Revenue model",
-                  body: "Subscriptions + auction fees + finance spread. Zero marketplace commission.",
-                },
-                {
-                  title: "Supply chain impact",
-                  body: "Lower costs, faster replenishment, and guaranteed sell-through.",
-                },
-                {
-                  title: "Lock-in effect",
-                  body: "Data, brand, and credit history compound inside the OS.",
-                },
-              ].map((item) => (
-                <motion.div
-                  key={item.title}
-                  variants={fadeInUp}
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.3 }}
-                  className="rounded-2xl border border-white/10 bg-white/5 p-4 shadow-lg shadow-green-900/10"
-                >
-                  <div className="text-sm font-semibold text-white mb-2">{item.title}</div>
-                  <div className="text-xs text-white/60">{item.body}</div>
-                </motion.div>
-              ))}
-            </motion.div>
           </motion.div>
         </motion.div>
       </motion.div>
+      </div>
+
+      <div className="relative z-10">
+        <PillarsSection />
+      </div>
     </section>
   );
 }
@@ -1524,7 +1499,6 @@ export default function Home() {
       <SolutionSection />
       <MarketDataSection />
       <FinancialsSection />
-      <PillarsSection />
       <ContactSection />
       <Footer />
     </div>
