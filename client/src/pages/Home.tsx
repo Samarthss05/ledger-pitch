@@ -302,7 +302,7 @@ function HeroSection() {
       tag: "Live",
     },
     {
-      title: "Demand Auctions",
+      title: "Demand Marketplace",
       subtitle: "Suppliers bid on live demand",
       icon: Gavel,
       tint: SAGE,
@@ -805,7 +805,7 @@ function SolutionSection() {
       accent: GREEN,
     },
     {
-      title: "Demand Auction",
+      title: "Marketplace",
       description: "Suppliers bid for guaranteed demand.",
       icon: Gavel,
       accent: SAGE,
@@ -1085,7 +1085,7 @@ function PillarsSection() {
   const pillars = [
     {
       id: 1,
-      title: "THE SENTIENT OS",
+      title: "THE AI Point Of Sale",
       subtitle: "AI That Runs the Shop",
       icon: Brain,
       description: "Don't give shops tools. Give them an autopilot.",
@@ -1100,7 +1100,7 @@ function PillarsSection() {
     },
     {
       id: 2,
-      title: "THE DEMAND AUCTION",
+      title: "THE DEMAND MARKETPLACE",
       subtitle: "Suppliers Bid for Guaranteed Sales",
       icon: Gavel,
       description: "Flip the marketplace. Suppliers bid for aggregated demand.",
