@@ -1224,18 +1224,18 @@ function FinancialsSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const projections = [
-    { year: "Year 1", shops: 50, gmv: "1M", revenue: "0.02M", ebitda: "-0.03M" },
-    { year: "Year 2", shops: 250, gmv: "4M", revenue: "0.30M", ebitda: "-0.19M" },
-    { year: "Year 3", shops: 800, gmv: "16M", revenue: "1.42M", ebitda: "-0.68M" },
-    { year: "Year 4", shops: 2500, gmv: "58M", revenue: "5.24M", ebitda: "1.17M" },
-    { year: "Year 5", shops: 6000, gmv: "159M", revenue: "13.65M", ebitda: "8.57M" },
+    { year: "Year 1", shops: 50, gmv: "$1.8M", revenue: "$0.14M", ebitda: "-6.8%" },
+    { year: "Year 2", shops: 350, gmv: "$81.5M", revenue: "$1.51M", ebitda: "8.1%" },
+    { year: "Year 3", shops: 1250, gmv: "$362.3M", revenue: "$6.24M", ebitda: "11.2%" },
+    { year: "Year 4", shops: 5000, gmv: "$1.8B", revenue: "$37.53M", ebitda: "27.9%" },
+    { year: "Year 5", shops: 10000, gmv: "$4.2B", revenue: "$83.61M", ebitda: "42.6%" },
   ];
 
   const isNegativeValue = (value: string) => value.trim().startsWith("-");
 
   const keyMetrics = [
-    { value: 160, suffix: "x", label: "LTV:CAC Ratio", sublabel: "By Year 5" },
-    { value: 69, suffix: "%", label: "Blended Margin", sublabel: "Across all pillars" },
+    { value: 57, suffix: "x", label: "LTV:CAC Ratio", sublabel: "By Year 5" },
+    { value: 300, suffix: "%", label: "Year-on-Year Growth", sublabel: "Across all pillars" },
     { value: 67, suffix: "%", label: "Revenue from Coop", sublabel: "Private label engine" },
   ];
 
@@ -1255,7 +1255,7 @@ function FinancialsSection() {
             <span className="text-sm font-medium" style={{ color: DARK_GREEN }}>Financial Projections</span>
           </motion.div>
           <motion.h2 variants={fadeInUp} className="text-4xl md:text-5xl font-bold mb-6" style={{ color: DARK_GREEN }}>
-            Path to <span style={{ color: GREEN }}>$136M Revenue</span>
+            Path to <span style={{ color: GREEN }}>Profitablity</span>
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-xl max-w-2xl mx-auto" style={{ color: GREEN }}>
             Conservative projections based on proven unit economics.
