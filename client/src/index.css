@@ -130,11 +130,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     font-feature-settings: "ss01" 1, "ss02" 1, "cv01" 1;
   }
+
   h1,
   h2,
   h3,
@@ -144,10 +146,12 @@
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+
   code,
   pre {
     font-family: var(--font-mono);
   }
+
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
   [type="button"]:not(:disabled),
@@ -159,6 +163,7 @@
   input[type="radio"]:not(:disabled) {
     @apply cursor-pointer;
   }
+
   section[id] {
     scroll-margin-top: 96px;
   }
@@ -192,20 +197,20 @@
       max-width: 1280px;
     }
   }
-  
+
   /* Premium gradient backgrounds */
   .gradient-green {
     background: linear-gradient(135deg, #5B7B6A 0%, #7A9B8A 100%);
   }
-  
+
   .gradient-dark {
     background: linear-gradient(135deg, #3D5A4A 0%, #5B7B6A 100%);
   }
-  
+
   .gradient-cream {
     background: linear-gradient(180deg, #E8E4D9 0%, #F5F3ED 100%);
   }
-  
+
   /* Subtle pattern overlay */
   .pattern-dots {
     background-image: radial-gradient(circle, rgba(91, 123, 106, 0.08) 1px, transparent 1px);
@@ -218,18 +223,22 @@
       linear-gradient(90deg, rgba(61, 90, 74, 0.08) 1px, transparent 1px);
     background-size: 36px 36px;
   }
-  
+
   /* Premium card styles */
   .card-premium {
-    background: linear-gradient(180deg, rgba(255,255,255,0.95) 0%, rgba(248,246,241,0.9) 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 246, 241, 0.9) 100%);
     box-shadow: 0 4px 6px -1px rgba(61, 90, 74, 0.1), 0 2px 4px -2px rgba(61, 90, 74, 0.1);
   }
 
   .glass-card {
-    backdrop-filter: blur(16px);
-    background: linear-gradient(140deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 24px 60px -30px rgba(31, 46, 38, 0.7);
+    backdrop-filter: blur(30px) saturate(1.2);
+    /* Colorless liquid glass */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow:
+      0 30px 60px -12px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    color: white;
   }
 }
 
@@ -261,9 +270,11 @@ html {
   0% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-8px);
   }
+
   100% {
     transform: translateY(0);
   }
@@ -283,4 +294,102 @@ html {
 ::selection {
   background: rgba(91, 123, 106, 0.2);
   color: #3D5A4A;
+}
+
+/* Typing cursor animation */
+@keyframes blink {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.typing-cursor {
+  animation: blink 1s step-end infinite;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  margin-left: 2px;
+}
+
+/* Form inputs */
+input[type="email"],
+input[type="text"],
+textarea {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+}
+
+input[type="email"]::placeholder,
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: #7A9B8A;
+  opacity: 0.7;
+}
+
+/* ROI Calculator slider */
+.roi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+}
+
+.roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #5B7B6A;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.roi-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.roi-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #5B7B6A;
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+/* Dashboard tab scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
 }
